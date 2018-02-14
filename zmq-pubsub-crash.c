@@ -1,6 +1,14 @@
 #include "zmq.h"
 #include <stdio.h>
 
+void poll(void *socket)
+{
+    zmq_pollitem_t items[1];
+    items[0].socket = socket;
+    items[0].events = ZMQ_POLLIN;
+    zmq_poll(items, 1, 1);
+}
+
 int main()
 {
     printf("%d.%d.%d\n", ZMQ_VERSION_MAJOR, ZMQ_VERSION_MINOR, ZMQ_VERSION_PATCH);
@@ -35,6 +43,7 @@ int main()
         }
 
         zmq_connect(pub, addr);
+        poll(sub);
 
         for (j = 0; j < n; ++j)
         {
