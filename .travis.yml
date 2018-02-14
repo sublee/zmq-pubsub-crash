@@ -1,9 +1,6 @@
 language: c
 
 install:
-# gcc required
-- sudo apt-get install build-essential
-
 # download libzmq-4.2.3
 - wget https://github.com/zeromq/libzmq/releases/download/v4.2.3/zeromq-4.2.3.tar.gz
 - tar -xzf zeromq-4.2.3.tar.gz
