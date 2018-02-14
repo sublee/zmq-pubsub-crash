@@ -31,6 +31,7 @@ int main()
         {
             sprintf(topic, "%08x", j);
             zmq_setsockopt(sub, ZMQ_SUBSCRIBE, &topic, 8);
+            zmq_getsockopt(sub, ZMQ_EVENTS, opt, &opt_len);
         }
 
         zmq_connect(pub, addr);
