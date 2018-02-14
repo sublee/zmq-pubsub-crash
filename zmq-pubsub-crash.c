@@ -19,7 +19,7 @@ int main()
     pub = zmq_socket(context, ZMQ_PUB);
     zmq_setsockopt(pub, ZMQ_RCVHWM, &hwm, sizeof(hwm));
 
-    for (i = 0; i < 100; ++i)
+    for (i = 0; i < 1000; ++i)
     {
         sub = zmq_socket(context, ZMQ_SUB);
         zmq_setsockopt(sub, ZMQ_SNDHWM, &hwm, sizeof(hwm));
@@ -29,15 +29,16 @@ int main()
 
         for (j = 0; j < n; ++j)
         {
-            sprintf(topic, "%08x", j);
+            sprintf(topic, "%x", j);
             zmq_setsockopt(sub, ZMQ_SUBSCRIBE, &topic, 8);
+            zmq_getsockopt(sub, ZMQ_EVENTS, opt, &opt_len);
         }
 
         zmq_connect(pub, addr);
 
         for (j = 0; j < n; ++j)
         {
-            sprintf(topic, "%08x", j);
+            sprintf(topic, "%x", j);
             zmq_setsockopt(sub, ZMQ_UNSUBSCRIBE, &topic, 8);
             zmq_getsockopt(sub, ZMQ_EVENTS, opt, &opt_len);
         }
