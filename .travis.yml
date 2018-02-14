@@ -14,6 +14,10 @@ install:
 - sudo ldconfig
 - popd
 
+# compile crash code
+- gcc zmq-pubsub-crash.c -L /usr/local/lib -lzmq -std=c99 -o zmq-pubsub-crash
+
 script:
-- gcc zmq-pubsub-crash.c -L /usr/local/lib -lzmq -std=c99
-- ./a.out
+- ulimit -c unlimited
+- ./zmq-pubsub-crash
+- [[ -f core ]] && gdb zmq-pubsub-crash core -ex bt -ex quit
