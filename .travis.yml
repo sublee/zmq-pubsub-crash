@@ -1,6 +1,9 @@
 language: c
 
 install:
+# install gdb
+- sudo apt-get install gdb
+
 # download libzmq-4.2.3
 - wget https://github.com/zeromq/libzmq/releases/download/v4.2.3/zeromq-4.2.3.tar.gz
 - tar -xzf zeromq-4.2.3.tar.gz
