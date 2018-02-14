@@ -11,7 +11,7 @@ int main()
 
     char addr[256]; size_t addr_len = 256;
     char opt[256];  size_t opt_len  = 256;
-    char topic[8];
+    char topic[9];
 
     void *context = zmq_ctx_new();
     void *pub, *sub;
