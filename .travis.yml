@@ -23,4 +23,4 @@ install:
 script:
 - ulimit -c unlimited
 - ./zmq-pubsub-crash
-- gdb zmq-pubsub-crash core -ex bt -ex quit
+- gdb zmq-pubsub-crash core -ex bt -batch
